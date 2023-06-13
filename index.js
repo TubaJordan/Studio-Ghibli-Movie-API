@@ -64,8 +64,10 @@ let topMovies = [
     },
 ];
 
-const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), { flags: "a" });
-app.use(morgan("combined", { stream: accessLogStream }));
+// const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), { flags: "a" });
+// app.use(morgan("combined", { stream: accessLogStream }));
+
+app.use(morgan("common"));
 
 app.use(express.static("public"));
 
