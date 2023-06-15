@@ -5,14 +5,170 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
         <title>Movie API</title>
     </head>
 
     <body>
-        <h1>Movie API</h1>
-        <p>This web application will provide users with access to information about different movies, directors, and
-            genres. Users will be able to sign up, update their personal information, and create a list of their
-            favorite movies.</p>
+
+        <table>
+            <thead>
+                <th>Business Logic</th>
+                <th>URL</th>
+                <th>HTTP Method</th>
+                <th>Query Parameters</th>
+                <th>Request body data format</th>
+                <th>Response body data format</th>
+            </thead>
+            <tr>
+                <td>Return a list of ALL movies to the user</td>
+                <td>/movies</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>None</td>
+                <td>A JSON object holding data about all the movies
+                    <span>{<br>
+                        "Title: "Movie Title",<br>
+                        "Description": "Movie Description",<br>
+                        "Genre": {<br>
+                        "Name": "Movie Genre",<br>
+                        "Description": "Genre Description"<br>
+                        },<br>
+                        "Director": {<br>
+                        "Name": "Director Name",<br>
+                        "Bio": "Director Bio",<br>
+                        "Birth": "Director Birth Year"<br>
+                        },<br>
+                        "ImageURL": "Image link for movie art",<br>
+                        "Featured": "true or false"<br>
+                        },<br>
+                        {etc.},<br>
+                        {etc.},<br>
+                        {etc.}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Return data (description, genre, director, image URL, whether it’s featured or not) about a single
+                    movie by title to the user</td>
+                <td>/movies/:title</td>
+                <td>GET</td>
+                <td>:title</td>
+                <td>None</td>
+                <td>A JSON object holding data about a single movie, containing a title, description, genre, director,
+                    and imageURL. <br>
+                    <span>{<br>
+                        "Title: "Movie Title",<br>
+                        "Description": "Movie Description",<br>
+                        "Genre": {<br>
+                        "Name": "Movie Genre",<br>
+                        "Description": "Genre Description"<br>
+                        },<br>
+                        "Director": {<br>
+                        "Name": "Director Name",<br>
+                        "Bio": "Director Bio",<br>
+                        "Birth": "Director Birth Year"<br>
+                        },<br>
+                        "ImageURL": "Image link for movie art",<br>
+                        "Featured": "true or false"<br>
+                        }<br></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
+                <td>/movies/genre/:genreName</td>
+                <td>GET</td>
+                <td>:genreName</td>
+                <td>None</td>
+                <td>A JSON object holding data about a single movie's genre.<br>
+                    <span>"Genre": {<br>
+                        "Name": "Movie Genre",<br>
+                        "Description": "Genre Description"<br>
+                        }<br></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Return data about a director (bio, birth year, death year) by name</td>
+                <td>/movies/director/:directorName</td>
+                <td>GET</td>
+                <td>:directorName</td>
+                <td>none</td>
+                <td>A JSON object holding data about a single movie director.<br>
+                    <span>"Director": {<br>
+                        "Name": "Director Name",<br>
+                        "Bio": "Director Bio",<br>
+                        "Birth": "Director Birth Year"<br>
+                        }<br></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Allow new users to register</td>
+                <td>/users</td>
+                <td>POST</td>
+                <td>None</td>
+                <td>A JSON object holding data about a single user to add.<br>
+                    <span>{<br>
+                        "name": "Example Name",<br>
+                        "faviroteMovies": []<br>
+                        }<br></span>
+                </td>
+                <td>A JSON object holding data about the single user that was added, including a genrerated id.<br>
+                    <span>{<br>
+                        "name": "Example Name",<br>
+                        "faviroteMovies": [],<br>
+                        "id": "1"<br>
+                        }<br></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Allow users to update their user info (username)</td>
+                <td>/users/:id</td>
+                <td>PUT</td>
+                <td>:id</td>
+                <td>A JSON object holding data about a single user to update.<br>
+                    <span>{<br>
+                        "name": "Updated Name",<br>
+                        }<br></span>
+                </td>
+                <td>A JSON object holding data about the single user that was updated<br>
+                    <span>{<br>
+                        "id": "1"<br>
+                        "name": "Updated Name",<br>
+                        "faviroteMovies": [],<br>
+                        }<br></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Allow users to add a movie to their list of favorites</td>
+                <td>/users/:id/:movieTitle</td>
+                <td>POST</td>
+                <td>:id, :movieTitle</td>
+                <td>None</td>
+                <td>A text message indicating the movie has been added to the users favirote movies list.<br>
+                    <span>"Movie Title" has been added to "the user's" favirote movies!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Allow users to remove a movie from their list of favorites</td>
+                <td>/users/:id/:movieTitle</td>
+                <td>DELETE</td>
+                <td>:id, :movieTitle</td>
+                <td>None</td>
+                <td>A text message indicating the movie has been removed to the users favirote movies list.<br>
+                    <span>"Movie Title" has been removed from "the user's" favirote movies.</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Allow existing users to deregister</td>
+                <td>/users/:id</td>
+                <td>DELETE</td>
+                <td>:id</td>
+                <td>None</td>
+                <td>A text message indicating the user has been removed from the database<br>
+                    <span>"User Name" has been successfully removed from the database.</span>
+                </td>
+            </tr>
+        </table>
+
     </body>
 
 </html>
