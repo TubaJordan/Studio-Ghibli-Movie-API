@@ -11,7 +11,7 @@ let users = [
     {
         id: 1,
         name: "Jordan",
-        faviroteMovies: []
+        favoriteMovies: []
     }
 ]
 
@@ -320,8 +320,8 @@ app.post("/users/:id/:movieTitle", (req, res) => {
     let user = users.find(user => user.id == id);
 
     if (user) {
-        user.faviroteMovies.push(movieTitle);
-        res.status(200).send(`${movieTitle} has been added to ${user.name}'s favirote movies!`);
+        user.favoriteMovies.push(movieTitle);
+        res.status(200).send(`${movieTitle} has been added to ${user.name}'s favorite movies!`);
     } else {
         res.status(400).send("No user by that ID exists in the database")
     }
@@ -334,8 +334,8 @@ app.delete("/users/:id/:movieTitle", (req, res) => {
     let user = users.find(user => user.id == id);
 
     if (user) {
-        user.faviroteMovies = user.faviroteMovies.filter(title => title !== movieTitle);
-        res.status(200).send(`${movieTitle} has been removed from ${user.name}'s favirote movies.`);
+        user.favoriteMovies = user.favoriteMovies.filter(title => title !== movieTitle);
+        res.status(200).send(`${movieTitle} has been removed from ${user.name}'s favorite movies.`);
     } else {
         res.status(400).send("No user by that ID exists in the database")
     }
