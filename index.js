@@ -326,7 +326,7 @@ app.get("/movies/genre/:genreName", (req, res) => {
 
 // READ - Return data about a director (bio, birth year, death year) by name
 app.get("/movies/director/:directorName", (req, res) => {
-    Movies.find({ "director.name": req.params.directorName })
+    Movies.findOne({ "director.name": req.params.directorName })
         .then((movies) => {
             if (!movies) {
                 return res.status(404).send(`Error: ${req.params.directorName} was not found`)
