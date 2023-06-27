@@ -13,8 +13,8 @@ let movieSchema = mongoose.Schema({
         birthyear: Number,
         deathyear: Number
     },
-    ImageUrl: String,
-    Featured: Boolean
+    imageUrl: String,
+    featured: Boolean
 });
 
 let userSchema = mongoose.Schema({
