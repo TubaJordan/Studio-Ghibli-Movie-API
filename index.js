@@ -259,17 +259,17 @@ app.get("/documentation", (req, res) => {
 
 // CREATE - Allow new users to register
 app.post("/users", (req, res) => {
-    Users.findOne({ Username: req.body.Username })
+    Users.findOne({ username: req.body.username })
         .then((user) => {
             if (user) {
-                return res.status(400).send(`The user ${req.body.Username} already exists`);
+                return res.status(400).send(`The user ${req.body.username} already exists`);
             } else {
                 Users
                     .create({
-                        Username: req.body.Username,
-                        Password: req.body.Password,
-                        Email: req.body.Email,
-                        BirthDate: req.body.BirthDate
+                        username: req.body.username,
+                        password: req.body.password,
+                        email: req.body.email,
+                        birthDate: req.body.birthDate
                     })
                     .then((user) => { res.status(201).json(user) })
                     .catch((err) => {
@@ -345,19 +345,19 @@ app.get("/movies/director/:directorName", passport.authenticate("jwt", { session
 });
 
 // UPDATE - Allow users to update their user info (username, password, email, date of birth)
-app.put("/users/:Username", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Users.findOneAndUpdate({ Username: req.params.Username }, {
+app.put("/users/:username", passport.authenticate("jwt", { session: false }), (req, res) => {
+    Users.findOneAndUpdate({ username: req.params.username }, {
         $set: {
-            Username: req.body.Username,
-            Password: req.body.Password,
-            Email: req.body.Email,
-            BirthDate: req.body.BirthDate
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+            birthDate: req.body.birthDate
         }
     },
         { new: true }) //this line makes sure that the updated document is returned
         .then((user) => {
             if (!user) {
-                return res.status(400).send(`Error: ${req.params.Username} was not found.`);
+                return res.status(400).send(`Error: ${req.params.username} was not found.`);
             } else {
                 res.json(user);
             }
@@ -369,14 +369,14 @@ app.put("/users/:Username", passport.authenticate("jwt", { session: false }), (r
 });
 
 // UPDATE/POST - Allow users to add a movie to their list of favorites
-app.post("/users/:Username/movies/:MovieID", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Users.findOneAndUpdate({ Username: req.params.Username }, {
-        $push: { FavoriteMovies: req.params.MovieID }
+app.post("/users/:username/movies/:MovieID", passport.authenticate("jwt", { session: false }), (req, res) => {
+    Users.findOneAndUpdate({ username: req.params.username }, {
+        $push: { favoriteMovies: req.params.MovieID }
     },
         { new: true })
         .then((user) => {
             if (!user) {
-                return res.status(400).send(`Error: ${req.params.Username} was not found.`);
+                return res.status(400).send(`Error: ${req.params.username} was not found.`);
             } else {
                 res.json(user);
             }
@@ -388,14 +388,14 @@ app.post("/users/:Username/movies/:MovieID", passport.authenticate("jwt", { sess
 });
 
 // DELETE - Allow users to remove a movie from their list of favorites
-app.delete("/users/:Username/movies/:MovieID", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Users.findOneAndUpdate({ Username: req.params.Username }, {
-        $pull: { FavoriteMovies: req.params.MovieID }
+app.delete("/users/:username/movies/:MovieID", passport.authenticate("jwt", { session: false }), (req, res) => {
+    Users.findOneAndUpdate({ username: req.params.username }, {
+        $pull: { favoriteMovies: req.params.MovieID }
     },
         { new: true })
         .then((user) => {
             if (!user) {
-                return res.status(400).send(`Error: ${req.params.Username} was not found.`);
+                return res.status(400).send(`Error: ${req.params.username} was not found.`);
             } else {
                 res.json(user);
             }
@@ -407,13 +407,13 @@ app.delete("/users/:Username/movies/:MovieID", passport.authenticate("jwt", { se
 });
 
 // DELETE - Allow existing users to deregister
-app.delete("/users/:Username", passport.authenticate("jwt", { session: false }), (req, res) => {
-    Users.findOneAndRemove({ Username: req.params.Username })
+app.delete("/users/:username", passport.authenticate("jwt", { session: false }), (req, res) => {
+    Users.findOneAndRemove({ username: req.params.username })
         .then((user) => {
             if (!user) {
-                res.status(400).send(`Error: ${req.params.Username} was not found.`);
+                res.status(400).send(`Error: ${req.params.username} was not found.`);
             } else {
-                res.status(200).send(`${req.params.Username} has been successfully removed from the database.`);
+                res.status(200).send(`${req.params.username} has been successfully removed from the database.`);
             }
         })
         .catch((err) => {
