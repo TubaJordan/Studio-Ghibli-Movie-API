@@ -162,10 +162,10 @@ app.get("/movies/director/:directorName", passport.authenticate("jwt", { session
 // UPDATE - Allow users to update their user info (username, password, email, date of birth)
 app.put("/users/:username", passport.authenticate("jwt", { session: false }),
     [
-        check("username", "Username is required").isLength({ min: 5 }),
-        check("username", "Username contains non alphanumeric characters - not allowed.").isAlphanumeric(),
-        check("password", "Password is required").not().isEmpty(),
-        check("email", "Email does not appear to be valid").isEmail()
+        check("username", "username must be at least 5 characters long.").isLength({ min: 5 }),
+        check("username", "username contains non alphanumeric characters - not allowed.").isAlphanumeric(),
+        check("password", "password is required").not().isEmpty(),
+        check("email", "email does not appear to be valid").isEmail()
     ],
     (req, res) => {
 
