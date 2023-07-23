@@ -29,22 +29,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 const cors = require("cors");
-// app.use(cors());
+app.use(cors());
 
 const { check, validationResult } = require("express-validator");
 
-let allowedOrigins = ["http://localhost:8080", "http://localhost:1234", "https://ghibli-movie-collection.netlify.app"];
+// let allowedOrigins = ["http://localhost:8080", "http://localhost:1234", "https://ghibli-movie-collection.netlify.app"];
 
-app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indecOf(origin) === -1) {
-            let message = `The CORS policy for this application doesn't allow access from origin ${origin}`;
-            return callback(new Error(message), false);
-        }
-        return callback(null, true);
-    }
-}));
+// app.use(cors({
+//     origin: (origin, callback) => {
+//         if (!origin) return callback(null, true);
+//         if (allowedOrigins.indecOf(origin) === -1) {
+//             let message = `The CORS policy for this application doesn't allow access from origin ${origin}`;
+//             return callback(new Error(message), false);
+//         }
+//         return callback(null, true);
+//     }
+// }));
 
 let auth = require("./auth")(app);
 const passport = require("passport");
