@@ -60,9 +60,15 @@ app.get("/documentation", (req, res) => {
 
 
 app.get("/users/:username", (req, res) => {
-    Users.findOne({ username: req.params.username })
+    const username = req.params.username;
+    Users.findOne({ username: username })
         .then((user) => {
-            res.json(user);
+            if (user) {
+                res.json(user);
+            } else {
+                // No user found with the specified username
+                res.status(404).send("User not found");
+            }
         })
         .catch((err) => {
             console.error(err);
