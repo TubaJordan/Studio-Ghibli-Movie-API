@@ -60,7 +60,7 @@ app.get("/documentation", (req, res) => {
 
 
 app.get("/users/:username", (req, res) => {
-    Users.findOne({ Username: req.params.username })
+    Users.findOne({ username: req.params.username })
         .then((user) => {
             res.json(user);
         })
