@@ -7,6 +7,10 @@ let Users = Models.User,
     JWTStrategy = passportJWT.Strategy,
     ExtractJWT = passportJWT.ExtractJwt;
 
+/**
+ * Local Strategy for authenticating user using a username and password.
+ * This strategy is used during login.
+ */
 passport.use(new LocalStrategy({
     usernameField: "username",
     passwordField: "password"
@@ -33,6 +37,10 @@ passport.use(new LocalStrategy({
         });
 }));
 
+/**
+ * JWT Strategy for extracting and verifying JWT tokens from HTTP headers.
+ * This strategy is used for protected routes to ensure the user is authenticated.
+ */
 passport.use(new JWTStrategy({
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
     secretOrKey: "your_jwt_secret"
