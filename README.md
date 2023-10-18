@@ -23,18 +23,17 @@ You need to have **Node.js** and **npm** installed on your machine. This API use
 ### Installation
 
 1. **Clone the repo**:
-
-git clone <repository-url>
+`git clone <repository-url>`
 
 2. **Install the dependencies**:
-cd movie_api
-npm install
+`cd movie_api`
+`npm install`
 
 3. **Set up your environment variables**:
 You need to set up your MongoDB connection URI as an environment variable named `CONNECTION_URI`.
 
 4. **Start the server**:
-npm start
+`npm start`
 
 ## API Endpoints
 
