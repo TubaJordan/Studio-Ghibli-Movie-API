@@ -61,16 +61,22 @@ You need to set up your MongoDB connection URI as an environment variable named 
 ## Built With
 
 - [**Node.js**](https://nodejs.org/)
-- [**Express.js**](https://expressjs.com/)
-- [**Mongoose**](https://mongoosejs.com/)
-- [**bcrypt**](https://www.npmjs.com/package/bcrypt)
-- [**jsonwebtoken**](https://www.npmjs.com/package/jsonwebtoken)
-- [**passport**](http://www.passportjs.org/)
-... and other packages listed in `package.json`.
+- [**Express**](https://expressjs.com/) - `^4.18.2`
+- [**Mongoose**](https://mongoosejs.com/) - `^7.3.1`
+- [**bcrypt**](https://www.npmjs.com/package/bcrypt) - `^5.0.1`
+- [**body-parser**](https://www.npmjs.com/package/body-parser) - `^1.20.2`
+- [**cors**](https://www.npmjs.com/package/cors) - `^2.8.5`
+- [**express-validator**](https://express-validator.github.io/docs/) - `^7.0.1`
+- [**jsonwebtoken**](https://www.npmjs.com/package/jsonwebtoken) - `^9.0.0`
+- [**morgan**](https://www.npmjs.com/package/morgan) - `^1.10.0`
+- [**passport**](http://www.passportjs.org/) - `^0.6.0`
+- [**passport-jwt**](https://www.npmjs.com/package/passport-jwt) - `^4.0.1`
+- [**passport-local**](https://www.npmjs.com/package/passport-local) - `^1.0.0`
+- [**uuid**](https://www.npmjs.com/package/uuid) - `^9.0.0`
 
 ## Author
 
-**[Your Name Here]**
+**Jordan Nelson**
 
 ## License
 
