@@ -1,6 +1,6 @@
-# Movie API
+# Studio Ghibli Movie API
 
-A RESTful API to interact with a movie database, allowing users to access movie details, as well as user profiles which include user favorites.
+A RESTful API to interact with a Studio Ghibli movie database, allowing users to access movie details, as well as user profiles which include user favorites.
 
 ## Table of Contents
 
