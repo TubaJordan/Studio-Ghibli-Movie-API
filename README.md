@@ -2,6 +2,8 @@
 
 A RESTful API to interact with a Studio Ghibli movie database, allowing users to access movie details, as well as user profiles which include user favorites.
 
+<img src="https://github.com/TubaJordan/Portfolio/blob/main/images/MoviesAPI-Display.png">
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
